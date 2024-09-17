@@ -31,7 +31,7 @@ class Library:
     
     def add_book(self, book):
         self.books.append(book)
-        print(f"add book:{book}")
+        #print(f"add book:{book}")
         self.save_books()
     
     def delete_book(self, title):
@@ -78,11 +78,9 @@ class Library:
     def savebooks_history(self,title,author="未知",year="未知"):
         now = str(datetime.now())
         borrow_History_data = {"书名：":title, "作者：":author, "出版日期： ":year, "借书日期：":now}
-        print(borrow_History_data)
+        #print(borrow_History_data)
         self.History.append(borrow_History_data)
-        print(self.History)
-        for h in self.History:
-            print(h)
+        #print(self.History)
         with open(r'.\borrow.json', 'w') as file:
             json.dump([History for History in self.History], file)
 
@@ -180,7 +178,7 @@ class LibraryApp:
             Empty = []
             json.dump(Empty,f)
         self.clear_result()
-        print("清空书籍")
+        #print("清空书籍")
         messagebox.showinfo("信息", "书籍已全部清空")
 
     def select_folder(self):
@@ -227,7 +225,7 @@ class LibraryApp:
             filetypes=[("Excel files", "*.xlsx"), ("CSV files", "*.csv")]
         )
         if file_path:
-            print(f"选择的文件: {file_path}")
+            #print(f"选择的文件: {file_path}")
             messagebox.showinfo("信息", "书籍已添加成功")
 
             self.fastAdd_book(file_path)
@@ -314,11 +312,11 @@ class LibraryApp:
         try:
             self.results_text.delete(1.0, tk.END)
             for History in history:
-                print(f"输出借书记录:{History}")
+                #print(f"输出借书记录:{History}")
                 self.results_text.insert(tk.END,f"书名: {History['书名：']}, 作者: {History['作者：']}, 出版年份: {History['出版日期： ']}, 借书时间：{History['借书日期：']}")
         except AttributeError:
             raise
-            # print("请用户重启本程序,谢谢~")
+            
 
     def clear_entries(self):
         self.title_entry.delete(0, tk.END)
